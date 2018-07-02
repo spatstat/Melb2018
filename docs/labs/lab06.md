@@ -1,0 +1,86 @@
+Lab 6: Correlation
+================
+
+This session is concerned with summary statistics for interpoint correlation (i.e. dependence between points).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script06.R) (right click and save).
+
+### Exercise 1
+
+The `swedishpines` dataset was recorded in a study plot in a large forest. We shall assume the pattern is stationary.
+
+1.  Calculate the estimate of the *K*-function using `Kest`.
+
+2.  Plot the estimate of *K*(*r*) against *r*
+
+3.  Plot the estimate of *K*(*r*)−*π*​*r*<sup>2</sup> against *r*.
+
+4.  Calculate the estimate of the *L*-function and plot it against *r*.
+
+5.  Plot the estimate of *L*(*r*)−*r* against *r*.
+
+6.  Calculate and plot an estimate of the pair correlation function using `pcf`.
+
+7.  Draw tentative conclusions from these plots about interpoint interaction in the data.
+
+### Exercise 2
+
+1.  Generate Fry Plots for the Swedish Pines data using the two commands
+
+    ``` r
+    fryplot(swedishpines)
+    fryplot(swedishpines, width=50)
+    ```
+
+2.  What can you interpret from these plots?
+
+### Exercise 3
+
+The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The question is whether, after allowing for inhomogeneity, there is still evidence of interpoint interaction. We will use the inhomogeneous *K*-function.
+
+1.  Compute the inhomogeneous *K* function using the default estimate of intensity (a leave-one-out kernel smoother) with heavy smoothing:
+
+    ``` r
+    KiS <- Kinhom(japanesepines, sigma=0.1)
+    plot(KiS)
+    ```
+
+2.  Fit a parametric trend to the data, and use this to compute the inhomogeneous *K* function:
+
+    ``` r
+    fit <- ppm(japanesepines ~ polynom(x,y,2))
+    lambda <- predict(fit, type="trend")
+    KiP <- Kinhom(japanesepines, lambda)
+    plot(KiP)
+    ```
+
+3.  Plot corresponding estimates of the inhomogeneous *L* function, using either `Linhom` or
+
+    ``` r
+    plot(KiS, sqrt(./pi) ~ r)
+    ```
+
+    and similarly for `KiP`.
+
+4.  Draw tentative conclusions about interpoint interaction.
+
+### Exercise 4
+
+To understand the difficulties with the *K*-function when the point pattern is not spatially homogeneous, try the following experiment.
+
+1.  Generate a simulated realisation of an inhomogeneous Poisson process, e.g.
+
+    ``` r
+    X <- rpoispp(function(x,y){ 200 * exp(-3 * x) })
+    ```
+
+2.  Plot the *K*-function or *L*-function. It will most likely appear to show evidence of clustering.
+
+### Exercise 5
+
+The cell process (`rcell`) has the same theoretical *K*-function as the uniform Poisson process.
+
+1.  Read the help file
+
+2.  Generate a simulated realisation of the cell process with a 10x10 grid of cells and plot it.
+
+3.  Plot the *K* or *L*-function for this pattern, and determine whether it is distinguishable from a Poisson process.
