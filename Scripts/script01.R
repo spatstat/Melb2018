@@ -1,10 +1,10 @@
-#'      SSAI course on spatial point patterns with spatstat
-#'                     Perth, May 2017
+#'      Course on analysing spatial point patterns with spatstat
+#'                     Melbourne, September 2018
 #' 
 #'                   Lecturer's R script 
 #'                  Session 1: Introduction
 #' 
-#'         Copyright (c) Adrian Baddeley and Ege Rubak 2017
+#'  Copyright (c) Adrian Baddeley, Ege Rubak, Rolf Turner and Tilman Davies 2018
 #' 
 library(spatstat)
 #' example of a point pattern
@@ -21,8 +21,9 @@ plot(bei)
 help(plot.ppp)
 plot(bei, cols="blue")
 plot(bei, chars=".")
-#' web style help display - recommended
+#' web style help display - recommended in base R, not needed in Rstudio
 help.start()
+#' access help
 help(plot.ppp)
 #' Read The Help Files!
 help(bei)
@@ -35,9 +36,12 @@ iplot(bei)
 X <- clickppp()
 plot(X)
 #' Read data from file
+#'      (navigate folders using getwd, setwd)
 xy <- read.table("Data/phones.txt", header=TRUE)
 names(xy)
 str(xy)
+head(xy)
+edit(xy)
 Phones <- ppp(xy$x, xy$y, c(0, 20), c(0, 10))
 Phones
 plot(Phones)

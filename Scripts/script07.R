@@ -1,10 +1,10 @@
-#'      SSAI course on spatial point patterns with spatstat
-#'                     Perth, May 2017
+#'      Course on analysing spatial point patterns with spatstat
+#'                     Melbourne, September 2018
 #' 
 #'                   Lecturer's R script 
 #'                  Session 7: Envelopes and Monte Carlo tests
 #' 
-#'         Copyright (c) Adrian Baddeley and Ege Rubak 2017
+#'  Copyright (c) Adrian Baddeley, Ege Rubak, Rolf Turner and Tilman Davies 2018
 #' 
 library(spatstat)
 
@@ -37,4 +37,11 @@ plot(envelope(clus, Lest, nsim=19, global=TRUE))
 mad.test(clus, Lest, nsim=19)
 
 dclf.test(clus, Lest, nsim=19)
+
+#' a better test 
+bits.test(clus, Lest, nsim=19)
+
+#' one-sided test
+bits.test(clus, Lest, nsim=19, alternative="greater")
+
 

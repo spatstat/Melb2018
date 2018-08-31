@@ -1,10 +1,10 @@
-#'      SSAI course on spatial point patterns with spatstat
-#'                     Perth, May 2017
+#'      Course on analysing spatial point patterns with spatstat
+#'                     Melbourne, September 2018
 #' 
 #'                   Lecturer's R script 
 #'                  Session 6: Correlation
 #' 
-#'         Copyright (c) Adrian Baddeley and Ege Rubak 2017
+#'  Copyright (c) Adrian Baddeley, Ege Rubak, Rolf Turner and Tilman Davies 2018
 #' 
 library(spatstat)
 

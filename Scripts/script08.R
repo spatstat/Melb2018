@@ -1,13 +1,14 @@
-#'      SSAI course on spatial point patterns with spatstat
-#'                     Perth, May 2017
+#'      Course on analysing spatial point patterns with spatstat
+#'                     Melbourne, September 2018
 #' 
 #'                   Lecturer's R script 
 #'                  Session 8: Spacing and nearest neighbours
 #' 
-#'         Copyright (c) Adrian Baddeley and Ege Rubak 2017
+#'  Copyright (c) Adrian Baddeley, Ege Rubak, Rolf Turner and Tilman Davies 2018
 #' 
 library(spatstat)
 
+#' concept of nearest neighbour
 plot(cells, type="n")
 text(cells, labels=1:npoints(cells))
 nnwhich(cells)
@@ -16,10 +17,14 @@ plot(cells)
 nn <- nnwhich(cells)
 arrows(cells$x, cells$y, cells[nn]$x, cells[nn]$y, length=0.2, angle=20)
 
+#' nearest neighbour distance
 nndist(cells)
 
+#' a tool for visualising nn distances
 stienen(cells)
+stienen(bei)
 
+#' statistical summary of nn distances
 plot(Gest(cells))
 
 set.seed(42)
