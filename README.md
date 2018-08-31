@@ -1,5 +1,5 @@
-## Melb2018
+# Melb2018
 
-# Workshop on analysing spatial point patterns, Melbourne, 2018
+## Workshop on analysing spatial point patterns, Melbourne, 2018
 
 
