@@ -22,7 +22,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 2.  Fit the Thomas model to the `redwood` data by the method of minimum contrast:
 
-    ``` r
+    ``` {.r}
     fit <- kppm(redwood ~ 1, clusters="Thomas")
     fit
     plot(fit)
@@ -34,7 +34,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 5.  Try the command
 
-    ``` r
+    ``` {.r}
     fit2 <- kppm(redwood ~ 1, clusters="Thomas", startpar=c(kappa=10, scale=0.1))
     ```
 
@@ -44,12 +44,12 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 7.  Extract and plot the fitted pair correlation function by
 
-    ``` r
+    ``` {.r}
     pcffit <- pcfmodel(fit)
     plot(pcffit, xlim = c(0, 0.3))
     ```
 
-8.  Type `plot(envelope(fit, Lest, nsim=39))` to generate simulation envelopes of the *L* function from this fitted model. Do they suggest the model is plausible?
+8.  Type `plot(envelope(fit, Lest, nsim=39))` to generate simulation envelopes of the \(L\) function from this fitted model. Do they suggest the model is plausible?
 
 ### Exercise 3
 

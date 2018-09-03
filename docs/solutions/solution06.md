@@ -10,72 +10,72 @@ The `swedishpines` dataset was recorded in a study plot in a large forest. We sh
 
 Before we begin, we plot the data:
 
-``` r
+``` {.r}
 plot(swedishpines, main = "")
 ```
 
-![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](solution06_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-1.  Calculate the estimate of the *K*-function using `Kest`.
+1.  Calculate the estimate of the \(K\)-function using `Kest`.
 
     The estimation is done with:
 
-    ``` r
+    ``` {.r}
     K <- Kest(swedishpines)
     ```
 
-2.  Plot the estimate of *K*(*r*) against *r*
+2.  Plot the estimate of \(K(r)\) against \(r\)
 
     To plot the K-function, we do:
 
-    ``` r
+    ``` {.r}
     plot(K, main = "K-function")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-5-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-3.  Plot the estimate of *K*(*r*)−*π*​*r*<sup>2</sup> against *r*.
+3.  Plot the estimate of \(K(r) - \pi\!r^2\) against \(r\).
 
-    The estimated K-function subtracted *π*​*r*<sup>2</sup> can be done via the `fmla` (formula) interface:
+    The estimated K-function subtracted \(\pi\!r^2\) can be done via the `fmla` (formula) interface:
 
-    ``` r
+    ``` {.r}
     plot(K, . - pi*r^2 ~ r, main = "Normalized K-function",
          legendpos = "bottomright")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-6-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-4.  Calculate the estimate of the *L*-function and plot it against *r*.
+4.  Calculate the estimate of the \(L\)-function and plot it against \(r\).
 
     Like the K-function, we estimate the L-function in the same manner:
 
-    ``` r
+    ``` {.r}
     L <- Lest(swedishpines)
     plot(L, main = "L-function")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-7-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-5.  Plot the estimate of *L*(*r*)−*r* against *r*.
+5.  Plot the estimate of \(L(r) - r\) against \(r\).
 
     Like before:
 
-    ``` r
+    ``` {.r}
     plot(L, . - r ~ r, main = "L-function")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-8-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 6.  Calculate and plot an estimate of the pair correlation function using `pcf`.
 
     The pair-correlation is also compute straight-forwardly:
 
-    ``` r
+    ``` {.r}
     pcorf <- pcf(swedishpines)
     plot(pcorf)
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-9-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 7.  Draw tentative conclusions from these plots about interpoint interaction in the data.
 
@@ -85,20 +85,20 @@ plot(swedishpines, main = "")
 
 1.  Generate Fry Plots for the Swedish Pines data using the two commands
 
-    ``` r
+    ``` {.r}
     fryplot(swedishpines)
     fryplot(swedishpines, width=50)
     ```
 
     OK,
 
-    ``` r
+    ``` {.r}
     par(mar=rep(0,4), mfrow=c(1,2))
     fryplot(swedishpines)
     fryplot(swedishpines, width=50)
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-11-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 2.  What can you interpret from these plots?
 
@@ -106,27 +106,27 @@ plot(swedishpines, main = "")
 
 ### Exercise 3
 
-The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The question is whether, after allowing for inhomogeneity, there is still evidence of interpoint interaction. We will use the inhomogeneous *K*-function.
+The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The question is whether, after allowing for inhomogeneity, there is still evidence of interpoint interaction. We will use the inhomogeneous \(K\)-function.
 
-1.  Compute the inhomogeneous *K* function using the default estimate of intensity (a leave-one-out kernel smoother) with heavy smoothing:
+1.  Compute the inhomogeneous \(K\) function using the default estimate of intensity (a leave-one-out kernel smoother) with heavy smoothing:
 
-    ``` r
+    ``` {.r}
     KiS <- Kinhom(japanesepines, sigma=0.1)
     plot(KiS)
     ```
 
     We compute the estimate (with the default smoother) by not specifying `sigma` as follows:
 
-    ``` r
+    ``` {.r}
     KiS <- Kinhom(japanesepines)
     plot(KiS)
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-13-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
-2.  Fit a parametric trend to the data, and use this to compute the inhomogeneous *K* function:
+2.  Fit a parametric trend to the data, and use this to compute the inhomogeneous \(K\) function:
 
-    ``` r
+    ``` {.r}
     fit <- ppm(japanesepines ~ polynom(x,y,2))
     lambda <- predict(fit, type="trend")
     KiP <- Kinhom(japanesepines, lambda)
@@ -135,26 +135,26 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The qu
 
     OK,
 
-    ``` r
+    ``` {.r}
     fit <- ppm(japanesepines ~ polynom(x,y,2))
     lambda <- predict(fit, type = "trend")
     KiP <- Kinhom(japanesepines, lambda)
     plot(KiP)
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-15-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-3.  Plot corresponding estimates of the inhomogeneous *L* function, using either `Linhom` or
+3.  Plot corresponding estimates of the inhomogeneous \(L\) function, using either `Linhom` or
 
-    ``` r
+    ``` {.r}
     plot(KiS, sqrt(./pi) ~ r)
     ```
 
     and similarly for `KiP`.
 
-    We use the inhomogenous *L*-function:
+    We use the inhomogenous \(L\)-function:
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     LiS <- Linhom(japanesepines)
     plot(LiS)
@@ -163,44 +163,44 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The qu
     plot(LiP)
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-17-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 4.  Draw tentative conclusions about interpoint interaction.
 
-    There seems to be no good evidence for any difference between the *L*-function under the Poisson model and the `japanesepines` point pattern.
+    There seems to be no good evidence for any difference between the \(L\)-function under the Poisson model and the `japanesepines` point pattern.
 
 ### Exercise 4
 
-To understand the difficulties with the *K*-function when the point pattern is not spatially homogeneous, try the following experiment.
+To understand the difficulties with the \(K\)-function when the point pattern is not spatially homogeneous, try the following experiment.
 
 1.  Generate a simulated realisation of an inhomogeneous Poisson process, e.g.
 
-    ``` r
+    ``` {.r}
     X <- rpoispp(function(x,y){ 200 * exp(-3 * x) })
     ```
 
     OK,
 
-    ``` r
+    ``` {.r}
     X <- rpoispp(function(x,y){ 200 * exp(-3 * x) })
     plot(X, main = "")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-19-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
-2.  Plot the *K*-function or *L*-function. It will most likely appear to show evidence of clustering.
+2.  Plot the \(K\)-function or \(L\)-function. It will most likely appear to show evidence of clustering.
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     plot(Kest(X))
     plot(Lest(X))
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-20-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 ### Exercise 5
 
-The cell process (`rcell`) has the same theoretical *K*-function as the uniform Poisson process.
+The cell process (`rcell`) has the same theoretical \(K\)-function as the uniform Poisson process.
 
 1.  Read the help file
 
@@ -210,29 +210,29 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
 
     The data is simulated (and plotted) with the `rcell` function and the following arguments:
 
-    ``` r
+    ``` {.r}
     X <- rcell(win=square(1), nx = 10, nsim = 1)
     plot(X, main = "")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-21-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
-3.  Plot the *K* or *L*-function for this pattern, and determine whether it is distinguishable from a Poisson process.
+3.  Plot the \(K\) or \(L\)-function for this pattern, and determine whether it is distinguishable from a Poisson process.
 
     We simulate 19 poisson processes and plot these.
 
-    ``` r
+    ``` {.r}
     lambda <- intensity(X)
     Y <- rpoispp(lambda, win = Window(X), nsim = 19)
     Y[[20]] <- X
     plot(Y, main = "")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-22-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
-    Next, we compute the *K* and *L* functions and plot these:
+    Next, we compute the \(K\) and \(L\) functions and plot these:
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     plot(Kest(Y[[20]]), iso ~ r, col = "red")
     tmp <- sapply(lapply(Y[-20], Kest), plot, iso ~ r, add = TRUE, col="lightgrey")
@@ -240,11 +240,11 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
     tmp <- sapply(lapply(Y[-20], Lest), plot, iso ~ r, add = TRUE, col="lightgrey")
     ```
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-23-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
     Alternatively, one can simply do
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     plot(envelope(X, Kest))
     ```
@@ -256,7 +256,7 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
         ## 
         ## Done.
 
-    ``` r
+    ``` {.r}
     plot(envelope(X, Lest))
     ```
 
@@ -267,4 +267,4 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
         ## 
         ## Done.
 
-    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-24-1.png)
+    ![](solution06_files/figure-markdown_github/unnamed-chunk-24-1.png)

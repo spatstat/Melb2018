@@ -10,7 +10,7 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 1.  Assign the elevation covariate to a variable `elev` by typing
 
-    ``` r
+    ``` {.r}
     elev <- bei.extra$elev
     ```
 
@@ -24,22 +24,22 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 ### Exercise 2
 
-Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where *e*(*u*) is the terrain elevation at location u.
+Assume that the intensity of trees is a function \(\lambda(u) = \rho(e(u))\) where \(e(u)\) is the terrain elevation at location u.
 
-1.  Compute a nonparametric estimate of the function *ρ* and plot it by
+1.  Compute a nonparametric estimate of the function \(\rho\) and plot it by
 
-    ``` r
+    ``` {.r}
     rh <- rhohat(bei, elev)
     plot(rh)
     ```
 
-2.  Compute the predicted intensity based on this estimate of *ρ*.
+2.  Compute the predicted intensity based on this estimate of \(\rho\).
 
 3.  Compute a non-parametric estimate by kernel smoothing and compare with the predicted intensity above.
 
 4.  Bonus info: To plot the two intensity estimates next to each other you collect the estimates as a spatial object list (`solist`) and plot the result (the estimates are called `pred` and `ker` below):
 
-    ``` r
+    ``` {.r}
     l <- solist(pred, ker)
     plot(l, equal.ribbon = TRUE, main = "", 
          main.panel = c("rhohat prediction", "kernel smoothing"))

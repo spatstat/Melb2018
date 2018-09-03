@@ -8,11 +8,11 @@ The lecturer's R script is [available here](https://raw.githubusercontent.com/sp
 
 In this question we fit a Strauss point process model to the `swedishpines` data.
 
-1.  We need a guess at the interaction distance *R*. Compute and plot the *L*-function of the dataset and choose the value *r* which maximises the discrepancy |*L*(*r*)−*r*|.
+1.  We need a guess at the interaction distance \(R\). Compute and plot the \(L\)-function of the dataset and choose the value \(r\) which maximises the discrepancy \(|L(r)-r|\).
 
 2.  Fit the stationary Strauss model with the chosen interaction distance using
 
-    ``` r
+    ``` {.r}
     ppm(swedishpines ~ 1, Strauss(R))
     ```
 
@@ -26,23 +26,23 @@ In this question we fit a Strauss point process model to the `swedishpines` data
 
 In Question 1 we guesstimated the Strauss interaction distance parameter. Alternatively this parameter could be estimated by profile pseudolikelihood.
 
-1.  Look again at the plot of the *L*-function of `swedishpines` and determine a plausible range of possible values for the interaction distance.
+1.  Look again at the plot of the \(L\)-function of `swedishpines` and determine a plausible range of possible values for the interaction distance.
 
-2.  Generate a sequence of values equally spaced across this range, for example, if your range of plausible values was \[5, 12\], then type
+2.  Generate a sequence of values equally spaced across this range, for example, if your range of plausible values was \([5, 12]\), then type
 
-    ``` r
+    ``` {.r}
     rvals <- seq(5, 12, by=0.5)
     ```
 
 3.  Construct a data frame, with one column named `r` (matching the argument name of `Strauss`), containing these values. For example
 
-    ``` r
+    ``` {.r}
     D <- data.frame(r = rvals)
     ```
 
 4.  Execute
 
-    ``` r
+    ``` {.r}
     fitp <- profilepl(D, Strauss, swedishpines ~ 1)
     ```
 
@@ -50,11 +50,11 @@ In Question 1 we guesstimated the Strauss interaction distance parameter. Altern
 
 5.  Print and plot the object `fitp`.
 
-6.  Compare the computed estimate of interaction distance *r* with your guesstimate. Compare the corresponding estimates of the Strauss interaction parameter *γ*.
+6.  Compare the computed estimate of interaction distance \(r\) with your guesstimate. Compare the corresponding estimates of the Strauss interaction parameter \(\gamma\).
 
 7.  Extract the fitted Gibbs point process model from the object `fitp` as
 
-    ``` r
+    ``` {.r}
     bestfit <- as.ppm(fitp)
     ```
 
@@ -64,7 +64,7 @@ For the Strauss model fitted in Question 1,
 
 1.  Generate and plot a simulated realisation of the fitted model using `simulate`.
 
-2.  Plot the *L*-function of the data along with the global simulation envelopes from 19 realisations of the fitted model.
+2.  Plot the \(L\)-function of the data along with the global simulation envelopes from 19 realisations of the fitted model.
 
 ### Exercise 4
 
@@ -84,10 +84,10 @@ Modify question 1 by using the Huang-Ogata approximate maximum likelihood algori
 
 Repeat Question 2 for the inhomogeneous Strauss process with log-quadratic trend. The corresponding call to `profilepl` is
 
-``` r
+``` {.r}
 fitp <- profilepl(D, Strauss, swedishpines ~ polynom(x,y,2))
 ```
 
 ### Exercise 7
 
-Repeat Question 3 for the inhomogeneous Strauss process with log-quadratic trend, using the inhomogeneous *L*-function `Linhom` in place of the usual *L*-function.
+Repeat Question 3 for the inhomogeneous Strauss process with log-quadratic trend, using the inhomogeneous \(L\)-function `Linhom` in place of the usual \(L\)-function.

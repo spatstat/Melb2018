@@ -4,19 +4,19 @@ Lab 4: Fitting Poisson models
 This session is concerned with Poisson point process models.
 The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script04.R) (right click and save).
 
-``` r
+``` {.r}
 library(spatstat)
 ```
 
 ### Exercise 1
 
-The command `rpoispp(100)` generates realisations of the Poisson process with intensity *λ* = 100 in the unit square.
+The command `rpoispp(100)` generates realisations of the Poisson process with intensity \(\lambda = 100\) in the unit square.
 
 1.  Repeat the command `plot(rpoispp(100))` several times to build your intuition about the appearance of a completely random pattern of points.
 
     Let's plot it three times:
 
-    ``` r
+    ``` {.r}
     replicate(3, plot(rpoispp(lambda = 100), main = ""))
     ```
 
@@ -24,11 +24,11 @@ The command `rpoispp(100)` generates realisations of the Poisson process with in
 
     As can be seen, the points (unsurprisingly) are much more random that want one might think. "Randomly" drawing points on a piece of paper one would usually draw a point pattern that is more regular (i.e. the points are repulsive).
 
-2.  Try the same thing with intensity *λ* = 1.5.
+2.  Try the same thing with intensity \(\lambda = 1.5\).
 
     For brevity we only do it once here:
 
-    ``` r
+    ``` {.r}
     plot(rpoispp(lambda = 1.5), main = "")
     ```
 
@@ -42,13 +42,13 @@ Returning to the Japanese Pines data,
 
 1.  Fit the uniform Poisson point process model to the Japanese Pines data
 
-    ``` r
+    ``` {.r}
     ppm(japanesepines~1)
     ```
 
     We fit the Poisson process model with the given command and print the output:
 
-    ``` r
+    ``` {.r}
     m.jp <- ppm(japanesepines ~ 1)
     print(m.jp)
     ```
@@ -62,13 +62,13 @@ Returning to the Japanese Pines data,
 
     We extract the coeficient with the `coef` function, and compare to the straightforward estimate obtained by \`intensity\`\`:
 
-    ``` r
+    ``` {.r}
     unname(exp(coef(m.jp)))
     ```
 
         ## [1] 65
 
-    ``` r
+    ``` {.r}
     intensity(japanesepines)
     ```
 
@@ -84,7 +84,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity.
 
     Plot the kernel smoothed intensity estimate selecting the bandwidth with `bw.scott`:
 
-    ``` r
+    ``` {.r}
     jp.dens <- density(japanesepines, sigma = bw.scott)
     plot(jp.dens)
     plot(japanesepines, col = "white", cex = .4, pch = 16, add = TRUE)
@@ -96,21 +96,21 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity.
 
     We fit the two models with `ppm`:
 
-    ``` r
+    ``` {.r}
     jp.m <- ppm(japanesepines ~ x + y)
     jp.m2 <- ppm(japanesepines ~ polynom(x, y, 2) )
     ```
 
 3.  extract the fitted coefficients for these models using `coef`.
 
-    ``` r
+    ``` {.r}
     coef(jp.m)
     ```
 
         ## (Intercept)           x           y 
         ##   4.0670790  -0.2349641   0.4296171
 
-    ``` r
+    ``` {.r}
     coef(jp.m2)
     ```
 
@@ -119,26 +119,26 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity.
 
 4.  Plot the fitted model intensity (using `plot(predict(fit))`)
 
-    ``` r
+    ``` {.r}
     par(mar=rep(0,4))
     plot(predict(jp.m), main = "")
     ```
 
     ![](solution04_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
-    ``` r
+    ``` {.r}
     plot(predict(jp.m, se=TRUE)$se, main = "")
     ```
 
     ![](solution04_files/figure-markdown_github/unnamed-chunk-11-2.png)
 
-    ``` r
+    ``` {.r}
     plot(predict(jp.m2), main = "")
     ```
 
     ![](solution04_files/figure-markdown_github/unnamed-chunk-11-3.png)
 
-    ``` r
+    ``` {.r}
     plot(predict(jp.m2, se=TRUE)$se, main = "")
     ```
 
@@ -146,7 +146,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity.
 
 5.  perform the Likelihood Ratio Test for the null hypothesis of a loglinear intensity against the alternative of a log-quadratic intensity, using `anova`.
 
-    ``` r
+    ``` {.r}
     anova(jp.m, jp.m2)
     ```
 
@@ -160,7 +160,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity.
 
 6.  Generate 10 simulated realisations of the fitted log-quadratic model, and plot them, using `plot(simulate(fit, nsim=10))` where `fit` is the fitted model.
 
-    ``` r
+    ``` {.r}
     par(mar=rep(0.5,4))
     plot(simulate(jp.m2, nsim=10), main = "")
     ```
@@ -175,7 +175,7 @@ The `update` command can be used to re-fit a point process model using a differe
 
 1.  Type the following commands and interpret the results:
 
-    ``` r
+    ``` {.r}
     fit0 <- ppm(japanesepines ~ 1)
     fit1 <- update(fit0, . ~ x)
     fit1
@@ -193,7 +193,7 @@ The `update` command can be used to re-fit a point process model using a differe
         ## (Intercept)  4.2895587 0.2411952  3.816825 4.7622926   *** 17.7845936
         ## x           -0.2349362 0.4305416 -1.078782 0.6089098       -0.5456759
 
-    ``` r
+    ``` {.r}
     fit2 <- update(fit1, . ~ . + y)
     fit2
     ```
@@ -213,7 +213,7 @@ The `update` command can be used to re-fit a point process model using a differe
 
     OK, let's do that:
 
-    ``` r
+    ``` {.r}
     fit0 <- ppm(japanesepines ~ 1)
     fit1 <- update(fit0, . ~ x)
     fit1
@@ -231,7 +231,7 @@ The `update` command can be used to re-fit a point process model using a differe
         ## (Intercept)  4.2895587 0.2411952  3.816825 4.7622926   *** 17.7845936
         ## x           -0.2349362 0.4305416 -1.078782 0.6089098       -0.5456759
 
-    ``` r
+    ``` {.r}
     fit2 <- update(fit1, . ~ . + y)
     fit2
     ```
@@ -253,7 +253,7 @@ The `update` command can be used to re-fit a point process model using a differe
 
     The backwards selection is done with the code:
 
-    ``` r
+    ``` {.r}
     step(fit2)
     ```
 
@@ -290,7 +290,7 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
     We fit the log-linear intensity model with the following:
 
-    ``` r
+    ``` {.r}
     bei.m <- ppm(bei ~ elev + grad, data = bei.extra)
     ```
 
@@ -298,18 +298,18 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
     The coefficents are extraced with `coef`:
 
-    ``` r
+    ``` {.r}
     coef(bei.m)
     ```
 
         ## (Intercept)        elev        grad 
         ## -8.55862210  0.02140987  5.84104065
 
-    Hence the model is *l**o**g**λ*(*u*)= − 8.55 + 0.02 ⋅ *E*(*u*)+5.84*G*(*u*) where *E*(*u*) and *G*(*u*) is the elevation and gradient, respectively, at *u*.
+    Hence the model is \(log\lambda(u) = -8.55 + 0.02\cdot E(u) + 5.84 G(u)\) where \(E(u)\) and \(G(u)\) is the elevation and gradient, respectively, at \(u\).
 
 3.  Plot the fitted intensity as a colour image.
 
-    ``` r
+    ``` {.r}
     plot(predict(bei.m), main = "")
     plot(bei, cex = 0.3, pch = 16, cols = "white", add = TRUE)
     ```
@@ -320,7 +320,7 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
     We call `vcov` on the fitted model object:
 
-    ``` r
+    ``` {.r}
     vcov(bei.m)
     ```
 
@@ -333,7 +333,7 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
     From the documentation the argument `se` will trigger the computation of the standard errors. These are then plotted in the standard manner.
 
-    ``` r
+    ``` {.r}
     std.err <- predict(bei.m, se = TRUE)$se
     plot(std.err, main = "")
     ```
@@ -344,85 +344,55 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 Fit Poisson point process models to the Japanese Pines data, with the following trend formulas. Read off an expression for the fitted intensity function in each case.
 
-<table style="width:89%;">
-<colgroup>
-<col width="26%" />
-<col width="62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Trend formula</th>
-<th align="left">Fitted intensity function</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>~1</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.17</span></td>
-</tr>
-<tr class="even">
-<td align="left"><code>~x</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.28 − 0.23<em>x</em></span></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>~sin(x)</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.29 − 0.26sin(<em>x</em>)</span></td>
-</tr>
-<tr class="even">
-<td align="left"><code>~x+y</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.07 − 0.23<em>x</em> + 0.42<em>y</em></span></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>~polynom(x,y,2)</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.06 + 1.14<em>x</em> − 1.56<em>y</em> − 0.75<em>x</em><sup>2</sup> − 1.20<em>x</em><em>y</em> + 2.51<em>y</em><sup>2</sup></span></td>
-</tr>
-<tr class="even">
-<td align="left"><code>~factor(x &lt; 0.4)</code></td>
-<td align="left"><span class="math inline">log<em>λ</em>(<em>u</em>)=4.10 + 0.16 ⋅ <em>I</em>(<em>x</em> &lt; 0.4)</span></td>
-</tr>
-</tbody>
-</table>
+|Trend formula|Fitted intensity function|
+|:------------|:------------------------|
+|`~1`|\(\log\lambda(u) = 4.17\)|
+|`~x`|\(\log\lambda(u) = 4.28 - 0.23x\)|
+|`~sin(x)`|\(\log\lambda(u) = 4.29 - 0.26\sin(x)\)|
+|`~x+y`|\(\log\lambda(u) = 4.07 - 0.23x + 0.42y\)|
+|`~polynom(x,y,2)`|\(\log\lambda(u) = 4.06 + 1.14x - 1.56y - 0.75x^2 - 1.20xy + 2.51y^2\)|
+|`~factor(x < 0.4)`|\(\log\lambda(u) = 4.10 + 0.16\cdot I(x < 0.4)\)|
 
-(Here, *I*(⋅) denote the indicator function.)
+(Here, \(I(\cdot)\) denote the indicator function.)
 
 The fitted intensity functions have been written into the table based on the follwing model fits:
 
-``` r
+``` {.r}
 coef(ppm1 <- ppm(japanesepines ~ 1)) 
 ```
 
     ## log(lambda) 
     ##    4.174387
 
-``` r
+``` {.r}
 coef(ppm2 <- ppm(japanesepines ~ x))
 ```
 
     ## (Intercept)           x 
     ##   4.2895587  -0.2349362
 
-``` r
+``` {.r}
 coef(ppm3 <- ppm(japanesepines ~ sin(x)))
 ```
 
     ## (Intercept)      sin(x) 
     ##   4.2915935  -0.2594537
 
-``` r
+``` {.r}
 coef(ppm4 <- ppm(japanesepines ~ x + y))
 ```
 
     ## (Intercept)           x           y 
     ##   4.0670790  -0.2349641   0.4296171
 
-``` r
+``` {.r}
 coef(ppm5 <- ppm(japanesepines ~ polynom(x, y, 2)))
 ```
 
     ## (Intercept)           x           y      I(x^2)    I(x * y)      I(y^2) 
     ##   4.0645501   1.1436854  -1.5613621  -0.7490094  -1.2009245   2.5061569
 
-``` r
+``` {.r}
 coef(ppm6 <- ppm(japanesepines ~ factor(x < 0.4)))
 ```
 
@@ -435,37 +405,37 @@ Make image plots of the fitted intensities for the inhomogeneous models above.
 
 Again, we use `plot(predict())`:
 
-``` r
+``` {.r}
 plot(predict(ppm1), main = "")
 ```
 
 ![](solution04_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
-``` r
+``` {.r}
 plot(predict(ppm2), main = "")
 ```
 
 ![](solution04_files/figure-markdown_github/unnamed-chunk-23-2.png)
 
-``` r
+``` {.r}
 plot(predict(ppm3), main = "")
 ```
 
 ![](solution04_files/figure-markdown_github/unnamed-chunk-23-3.png)
 
-``` r
+``` {.r}
 plot(predict(ppm4), main = "")
 ```
 
 ![](solution04_files/figure-markdown_github/unnamed-chunk-23-4.png)
 
-``` r
+``` {.r}
 plot(predict(ppm5), main = "")
 ```
 
 ![](solution04_files/figure-markdown_github/unnamed-chunk-23-5.png)
 
-``` r
+``` {.r}
 plot(predict(ppm6), main = "")
 ```
 

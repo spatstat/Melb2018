@@ -6,11 +6,11 @@ The lecturer's R script is [available here](https://raw.githubusercontent.com/sp
 
 ### Exercise 1
 
-The command `rpoispp(100)` generates realisations of the Poisson process with intensity *λ* = 100 in the unit square.
+The command `rpoispp(100)` generates realisations of the Poisson process with intensity \(\lambda = 100\) in the unit square.
 
 1.  Repeat the command `plot(rpoispp(100))` several times to build your intuition about the appearance of a completely random pattern of points.
 
-2.  Try the same thing with intensity *λ* = 1.5.
+2.  Try the same thing with intensity \(\lambda = 1.5\).
 
 ### Exercise 2
 
@@ -18,7 +18,7 @@ Returning to the Japanese Pines data,
 
 1.  Fit the uniform Poisson point process model to the Japanese Pines data
 
-    ``` r
+    ``` {.r}
     ppm(japanesepines~1)
     ```
 
@@ -46,7 +46,7 @@ The `update` command can be used to re-fit a point process model using a differe
 
 1.  Type the following commands and interpret the results:
 
-    ``` r
+    ``` {.r}
     fit0 <- ppm(japanesepines ~ 1)
     fit1 <- update(fit0, . ~ x)
     fit1
@@ -74,14 +74,14 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 Fit Poisson point process models to the Japanese Pines data, with the following trend formulas. Read off an expression for the fitted intensity function in each case.
 
-| Trend formula      | Fitted intensity function |
-|:-------------------|:--------------------------|
-| `~1`               |                           |
-| `~x`               |                           |
-| `~sin(x)`          |                           |
-| `~x+y`             |                           |
-| `~polynom(x,y,2)`  |                           |
-| `~factor(x < 0.4)` |                           |
+|Trend formula|Fitted intensity function|
+|:------------|:------------------------|
+|`~1`||
+|`~x`||
+|`~sin(x)`||
+|`~x+y`||
+|`~polynom(x,y,2)`||
+|`~factor(x < 0.4)`||
 
 ### Exercise 7
 

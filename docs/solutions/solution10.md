@@ -4,27 +4,39 @@ Lab 10: Gibbs processes
 This session is concerned with Gibbs models for point patterns with interpoint interaction.
 The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script10.R) (right click and save).
 
-``` r
+``` {.r}
 library(spatstat)
 ```
+
+    ## Loading required package: spatstat.data
+
+    ## Loading required package: methods
+
+    ## Loading required package: nlme
+
+    ## Loading required package: rpart
+
+    ## 
+    ## spatstat 1.56-1.007       (nickname: 'Damn You Autocorrect') 
+    ## For an introduction to spatstat, type 'beginner'
 
 ### Exercise 1
 
 In this question we fit a Strauss point process model to the `swedishpines` data.
 
-1.  We need a guess at the interaction distance *R*. Compute and plot the *L*-function of the dataset and choose the value *r* which maximises the discrepancy |*L*(*r*)−*r*|.
+1.  We need a guess at the interaction distance \(R\). Compute and plot the \(L\)-function of the dataset and choose the value \(r\) which maximises the discrepancy \(\lvert L(r)-r \rvert\).
 
     We plot the above function which we want to maximize.
 
-    ``` r
+    ``` {.r}
     plot(Lest(swedishpines), abs(iso - r) ~ r, main = "")
     ```
 
     ![](solution10_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-    As seen from the plot, the maximum lies around *r* = 6.5 by eye. We find the optimum explicitly like follows:
+    As seen from the plot, the maximum lies around \(r = 6.5\) by eye. We find the optimum explicitly like follows:
 
-    ``` r
+    ``` {.r}
     discrep <- function(r) {
       return(abs(as.function(Lest(swedishpines))(r) - r))
     }
@@ -38,7 +50,7 @@ In this question we fit a Strauss point process model to the `swedishpines` data
         ## $objective
         ## [1] 2.992058
 
-    ``` r
+    ``` {.r}
     R <- res$maximum
     ```
 
@@ -46,7 +58,7 @@ In this question we fit a Strauss point process model to the `swedishpines` data
 
 2.  Fit the stationary Strauss model with the chosen interaction distance using
 
-    ``` r
+    ``` {.r}
     ppm(swedishpines ~ 1, Strauss(R))
     ```
 
@@ -58,7 +70,7 @@ In this question we fit a Strauss point process model to the `swedishpines` data
 
     As we have assigned `R`, we simply write:
 
-    ``` r
+    ``` {.r}
     fit <- ppm(swedishpines ~ 1, Strauss(R))
     print(fit)
     ```
@@ -76,11 +88,11 @@ In this question we fit a Strauss point process model to the `swedishpines` data
         ## 
         ## For standard errors, type coef(summary(x))
 
-    As seen, the *γ* = 0.14 parameter is quite small. Thus there seems to be a strong negative association between points within distance R of each other. A *γ* of 0 implies the hard core process whereas *γ* = 1 implies the Poisson process and thus CSR.
+    As seen, the \(\gamma = 0.14\) parameter is quite small. Thus there seems to be a strong negative association between points within distance R of each other. A \(\gamma\) of \(0\) implies the hard core process whereas \(\gamma = 1\) implies the Poisson process and thus CSR.
 
     The pairwise interaction function become:
 
-    ``` r
+    ``` {.r}
     plot(fitin(fit))
     ```
 
@@ -90,9 +102,9 @@ In this question we fit a Strauss point process model to the `swedishpines` data
 
 In Question 1 we guesstimated the Strauss interaction distance parameter. Alternatively this parameter could be estimated by profile pseudolikelihood.
 
-1.  Look again at the plot of the *L*-function of `swedishpines` and determine a plausible range of possible values for the interaction distance.
+1.  Look again at the plot of the \(L\)-function of `swedishpines` and determine a plausible range of possible values for the interaction distance.
 
-    ``` r
+    ``` {.r}
     plot(Lest(swedishpines), main = "")
     ```
 
@@ -100,33 +112,33 @@ In Question 1 we guesstimated the Strauss interaction distance parameter. Altern
 
     A conservative range of plausible interaction distances seems to be 3 to 15 meters.
 
-2.  Generate a sequence of values equally spaced across this range, for example, if your range of plausible values was \[0.05, 0.3\], then type
+2.  Generate a sequence of values equally spaced across this range, for example, if your range of plausible values was \([0.05, 0.3]\), then type
 
-    ``` r
+    ``` {.r}
     rvals <- seq(0.05, 0.3, by=0.01)
     ```
 
     We generate the numbers between 3 and 12.
 
-    ``` r
+    ``` {.r}
     rvals <- seq(3, 12, by = 0.1)
     ```
 
 3.  Construct a data frame, with one column named `r` (matching the argument name of `Strauss`), containing these values. For example
 
-    ``` r
+    ``` {.r}
     D <- data.frame(r = rvals)
     ```
 
     OK,
 
-    ``` r
+    ``` {.r}
     D <- data.frame(r = rvals)
     ```
 
 4.  Execute
 
-    ``` r
+    ``` {.r}
     fitp <- profilepl(D, Strauss, swedishpines ~ 1)
     ```
 
@@ -134,7 +146,7 @@ In Question 1 we guesstimated the Strauss interaction distance parameter. Altern
 
     OK, let's execute it:
 
-    ``` r
+    ``` {.r}
     fitp <- profilepl(D, Strauss, swedishpines ~ 1)
     ```
 
@@ -152,7 +164,7 @@ In Question 1 we guesstimated the Strauss interaction distance parameter. Altern
 
 5.  Print and plot the object `fitp`.
 
-    ``` r
+    ``` {.r}
     print(fitp)
     ```
 
@@ -163,31 +175,31 @@ In Question 1 we guesstimated the Strauss interaction distance parameter. Altern
         ## irregular parameter: r in [3, 12]
         ## optimum value of irregular parameter:  r = 9.8
 
-    ``` r
+    ``` {.r}
     plot(fitp)
     ```
 
     ![](solution10_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-6.  Compare the computed estimate of interaction distance *r* with your guesstimate. Compare the corresponding estimates of the Strauss interaction parameter *γ*.
+6.  Compare the computed estimate of interaction distance \(r\) with your guesstimate. Compare the corresponding estimates of the Strauss interaction parameter \(\gamma\).
 
-    ``` r
+    ``` {.r}
     (Ropt <- reach(as.ppm(fitp)))
     ```
 
         ## [1] 9.8
 
-    The *r* = 9.8 is not totally inconsistent with the previous estimate of 7.
+    The \(r = 9.8\) is not totally inconsistent with the previous estimate of \(7\).
 
 7.  Extract the fitted Gibbs point process model from the object `fitp` as
 
-    ``` r
+    ``` {.r}
     bestfit <- as.ppm(fitp)
     ```
 
     OK, let's do that:
 
-    ``` r
+    ``` {.r}
     bestfit <- as.ppm(fitp)
     ```
 
@@ -197,16 +209,16 @@ For the Strauss model fitted in Question 1,
 
 1.  Generate and plot a simulated realisation of the fitted model using `simulate`.
 
-    ``` r
+    ``` {.r}
     s <- simulate(fit, drop = TRUE)
     plot(s, main = "")
     ```
 
     ![](solution10_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
-2.  Plot the *L*-function of the data along with the global simulation envelopes from 19 realisations of the fitted model.
+2.  Plot the \(L\)-function of the data along with the global simulation envelopes from 19 realisations of the fitted model.
 
-    ``` r
+    ``` {.r}
     plot(envelope(fit, Lest, global = TRUE, nsim = 19, nsim2 = 100), main = "")
     ```
 
@@ -229,7 +241,7 @@ For the Strauss model fitted in Question 1,
 
 2.  Fit a stationary Geyer saturation process to `swedishpines`, with the same interaction distance as for the Strauss model computed in Question 2, and trying different values of the saturation parameter `sat = 1, 2, 3` say.
 
-    ``` r
+    ``` {.r}
     ppm(swedishpines ~ 1, Geyer(r = Ropt, sat = 1))
     ```
 
@@ -247,7 +259,7 @@ For the Strauss model fitted in Question 1,
         ## 
         ## For standard errors, type coef(summary(x))
 
-    ``` r
+    ``` {.r}
     ppm(swedishpines ~ 1, Geyer(r = Ropt, sat = 2))
     ```
 
@@ -265,7 +277,7 @@ For the Strauss model fitted in Question 1,
         ## 
         ## For standard errors, type coef(summary(x))
 
-    ``` r
+    ``` {.r}
     ppm(swedishpines ~ 1, Geyer(r = Ropt, sat = 3))
     ```
 
@@ -285,7 +297,7 @@ For the Strauss model fitted in Question 1,
 
 3.  Fit the same model with the addition of a log-quadratic trend.
 
-    ``` r
+    ``` {.r}
     gfit <- ppm(swedishpines ~ polynom(x, y, 2), Geyer(r = Ropt, sat = 3))
     ```
 
@@ -293,7 +305,7 @@ For the Strauss model fitted in Question 1,
 
     Here we use the log scale to be able to see the discs in the conditional intensity.
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     plot(gfit, log = TRUE, pause = FALSE)
     ```
@@ -304,7 +316,7 @@ For the Strauss model fitted in Question 1,
 
 Modify question 1 by using the Huang-Ogata approximate maximum likelihood algorithm (`method="ho"`) instead of maximum pseudolikelihood (the default, `method="mpl"`).
 
-``` r
+``` {.r}
 fit.mpl <- ppm(swedishpines ~ 1, Strauss(R), method = "mpl")
 fit.ho  <- ppm(swedishpines ~ 1, Strauss(R), method = "ho")
 ```
@@ -314,24 +326,24 @@ fit.ho  <- ppm(swedishpines ~ 1, Strauss(R), method = "ho")
     ## 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,  100.
     ## Done.
 
-``` r
+``` {.r}
 print(fit.ho)
 ```
 
     ## Stationary Strauss process
     ## 
-    ## First order term:  beta = 0.03025998
+    ## First order term:  beta = 0.03114674
     ## 
     ## Interaction distance:    6.984333
-    ## Fitted interaction parameter gamma:   0.1473619
+    ## Fitted interaction parameter gamma:   0.139353
     ## 
     ## Relevant coefficients:
     ## Interaction 
-    ##   -1.914864 
+    ##   -1.970745 
     ## 
     ## For standard errors, type coef(summary(x))
 
-``` r
+``` {.r}
 print(fit.mpl)
 ```
 
@@ -354,11 +366,11 @@ The fits are very similar.
 
 Repeat Question 2 for the inhomogeneous Strauss process with log-quadratic trend. The corresponding call to `profilepl` is
 
-``` r
+``` {.r}
 fitp <- profilepl(D, Strauss, swedishpines ~ polynom(x,y,2))
 ```
 
-``` r
+``` {.r}
 fitp2 <- profilepl(D, Strauss, swedishpines ~ polynom(x,y,2))
 ```
 
@@ -374,7 +386,7 @@ fitp2 <- profilepl(D, Strauss, swedishpines ~ polynom(x,y,2))
 
     ## done.
 
-``` r
+``` {.r}
 print(fitp)
 ```
 
@@ -385,7 +397,7 @@ print(fitp)
     ## irregular parameter: r in [3, 12]
     ## optimum value of irregular parameter:  r = 9.8
 
-``` r
+``` {.r}
 print(fitp2)
 ```
 
@@ -398,9 +410,9 @@ print(fitp2)
 
 ### Exercise 7
 
-Repeat Question 3 for the inhomogeneous Strauss process with log-quadratic trend, using the inhomogeneous *L*-function `Linhom` in place of the usual *L*-function.
+Repeat Question 3 for the inhomogeneous Strauss process with log-quadratic trend, using the inhomogeneous \(L\)-function `Linhom` in place of the usual \(L\)-function.
 
-``` r
+``` {.r}
 fit2 <- as.ppm(fitp2)
 plot(envelope(fit2, Linhom, global = TRUE, nsim = 19, nsim2 = 100), main = "")
 ```

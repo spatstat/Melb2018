@@ -6,7 +6,7 @@ The lecturer's R script is [available here](https://raw.githubusercontent.com/sp
 
 If you have not already done so, you’ll need to start R and load the `spatstat` package by typing
 
-``` r
+``` {.r}
 library(spatstat)
 ```
 
@@ -34,7 +34,7 @@ The Ponderosa data, continued:
 
 3.  from your reading of the help file, predict what will happen if we type
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars="X", cols="green")
     ```
 
@@ -44,9 +44,9 @@ The Ponderosa data, continued:
 
 ### Exercise 3
 
-The following vectors record the locations of 10 scintillation events observed under a microscope. Coordinates are given in microns, and the study region was 30 × 30 microns, with the origin at the bottom left corner.
+The following vectors record the locations of 10 scintillation events observed under a microscope. Coordinates are given in microns, and the study region was \(30 \times 30\) microns, with the origin at the bottom left corner.
 
-``` r
+``` {.r}
 x <- c(13, 15, 27, 17, 8, 8, 1, 14, 19, 23)
 y <- c(3, 15, 7, 11, 10, 17, 29, 22, 19, 29)
 ```

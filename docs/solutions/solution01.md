@@ -6,7 +6,7 @@ The lecturer's R script is [available here](https://raw.githubusercontent.com/sp
 
 If you have not already done so, you’ll need to start R and load the `spatstat` package by typing
 
-``` r
+``` {.r}
 library(spatstat)
 ```
 
@@ -18,7 +18,7 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     To assign the data to `X` we simply write:
 
-    ``` r
+    ``` {.r}
     X <- ponderosa
     ```
 
@@ -26,7 +26,7 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     To plot the data we do the following:
 
-    ``` r
+    ``` {.r}
     plot(X)
     ```
 
@@ -38,13 +38,13 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     Both `npoints` and `print.ppp` displays the number of recorded trees:
 
-    ``` r
+    ``` {.r}
     npoints(X)
     ```
 
         ## [1] 108
 
-    ``` r
+    ``` {.r}
     print(X)
     ```
 
@@ -57,7 +57,7 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     The dimensions of the observation window can be seen above. Alternatively, it can be directly assesed via
 
-    ``` r
+    ``` {.r}
     window(X)
     ```
 
@@ -68,7 +68,7 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     The average intensity can be computed via `intensity.ppp`
 
-    ``` r
+    ``` {.r}
     intensity(X)
     ```
 
@@ -76,7 +76,7 @@ We will study a dataset that records the locations of Ponderosa Pine trees (*Pin
 
     or the more expansive `summary.ppp`:
 
-    ``` r
+    ``` {.r}
     summary(X)
     ```
 
@@ -100,7 +100,7 @@ The Ponderosa data, continued:
 
 2.  plot the Ponderosa data with the title *Ponderosa Pine Trees* above it;
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, main = "Ponderosa Pine Trees")
     ```
 
@@ -108,7 +108,7 @@ The Ponderosa data, continued:
 
 3.  from your reading of the help file, predict what will happen if we type
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars="X", cols="green")
     ```
 
@@ -116,7 +116,7 @@ The Ponderosa data, continued:
 
     Each point will be plotted as an green "X" and indeed:
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars="X", cols="green")
     ```
 
@@ -126,25 +126,25 @@ The Ponderosa data, continued:
 
     There are subtle differences in the actual character/point types plotted. When given a string literal, the actual character is plotted as the point type.
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars=3, cols="green")
     ```
 
     ![](solution01_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars="+", cols="green")
     ```
 
     ![](solution01_files/figure-markdown_github/unnamed-chunk-12-2.png)
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars=4, cols="green")
     ```
 
     ![](solution01_files/figure-markdown_github/unnamed-chunk-12-3.png)
 
-    ``` r
+    ``` {.r}
     plot(ponderosa, chars="X", cols="green")
     ```
 
@@ -152,9 +152,9 @@ The Ponderosa data, continued:
 
 ### Exercise 3
 
-The following vectors record the locations of 10 scintillation events observed under a microscope. Coordinates are given in microns, and the study region was 30 × 30 microns, with the origin at the bottom left corner.
+The following vectors record the locations of 10 scintillation events observed under a microscope. Coordinates are given in microns, and the study region was \(30 \times 30\) microns, with the origin at the bottom left corner.
 
-``` r
+``` {.r}
 x <- c(13, 15, 27, 17, 8, 8, 1, 14, 19, 23)
 y <- c(3, 15, 7, 11, 10, 17, 29, 22, 19, 29)
 ```
@@ -163,13 +163,13 @@ Create a point pattern `X` from the data, and plot the point pattern (use `owin`
 
 To define the observation window we do:
 
-``` r
+``` {.r}
 w <- owin(c(0, 30), c(0, 30), unitname = c("micron", "microns"))
 ```
 
 With this window, we create the `ppp` object with the funciton of the same name and plot it:
 
-``` r
+``` {.r}
 P <- ppp(x = x, y = y, window = w)
 plot(P, main = "Scintillation events")
 ```
@@ -186,7 +186,7 @@ It records the locations of anthills recorded in a 1200x1500 metre study region 
 
     We read the data into R with the line:
 
-    ``` r
+    ``` {.r}
     dat <- read.table(file = "../Data/anthills.txt", header = TRUE)
     ```
 
@@ -194,7 +194,7 @@ It records the locations of anthills recorded in a 1200x1500 metre study region 
 
     Looking at the first entries of the dataset with
 
-    ``` r
+    ``` {.r}
     head(dat)
     ```
 
@@ -212,7 +212,7 @@ It records the locations of anthills recorded in a 1200x1500 metre study region 
 
     As before
 
-    ``` r
+    ``` {.r}
     hills <- with(dat, ppp(x, y, xrange = c(0, 1200), yrange = c(0, 1500), 
                            units=c("metre", "metres")))
     ```
@@ -223,7 +223,7 @@ It records the locations of anthills recorded in a 1200x1500 metre study region 
 
     As before, we can now plot the data:
 
-    ``` r
+    ``` {.r}
     plot(hills, pch = 16, cex = 0.3, main = "Anthill locations")
     ```
 

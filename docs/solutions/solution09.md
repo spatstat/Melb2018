@@ -4,9 +4,21 @@ Lab 9: Cluster and Cox processes
 This session is concerned with summary statistics for interpoint spacing and distances.
 The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script09.R) (right click and save).
 
-``` r
+``` {.r}
 library(spatstat)
 ```
+
+    ## Loading required package: spatstat.data
+
+    ## Loading required package: methods
+
+    ## Loading required package: nlme
+
+    ## Loading required package: rpart
+
+    ## 
+    ## spatstat 1.56-1.007       (nickname: 'Damn You Autocorrect') 
+    ## For an introduction to spatstat, type 'beginner'
 
 ### Exercise 1
 
@@ -18,7 +30,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 2.  Type `plot(rThomas(10, 0.05, 8))` a few times, and interpret the results.
 
-    ``` r
+    ``` {.r}
     replicate(3, plot(rThomas(10, 0.05, 8), main = ""))
     ```
 
@@ -34,7 +46,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     We get few clusters by reducing the intensity of the parent process (first argument). Tightly and separated clusters are obtained by reducing the standard deviation (second argument).
 
-    ``` r
+    ``` {.r}
     plot(rThomas(5, 0.01, 8), main = "")
     ```
 
@@ -42,7 +54,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     If the are many clusters with a large standard deviation it looks like Poisson.
 
-    ``` r
+    ``` {.r}
     plot(rThomas(100, 1, 1), main = "")
     ```
 
@@ -56,7 +68,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 2.  Fit the Thomas model to the `redwood` data by the method of minimum contrast:
 
-    ``` r
+    ``` {.r}
     fit <- kppm(redwood ~ 1, clusters="Thomas")
     fit
     plot(fit)
@@ -64,7 +76,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     From the documentation, the minmum contrast fitting procedure is default. Hence, we need not specify it.
 
-    ``` r
+    ``` {.r}
     fit <- kppm(redwood ~ 1, clusters = "Thomas")
     fit
     ```
@@ -82,12 +94,9 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
         ## 23.5511449  0.0470461 
         ## Mean cluster size:  2.632568 points
 
-    ``` r
+    ``` {.r}
     plot(fit, main = "", pause = FALSE) 
     ```
-
-        ## Warning in density.ppp(locations, kernel = model, ...): Bandwidth selection
-        ## will be based on Gaussian kernel
 
     ![](solution09_files/figure-markdown_github/unnamed-chunk-7-1.png)![](solution09_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
@@ -95,7 +104,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     From the previous output, we can read off the parameters to do the simulation (or we can use `parameters` to extract them):
 
-    ``` r
+    ``` {.r}
     (p <- parameters(fit))
     ```
 
@@ -111,7 +120,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
         ## $mu
         ## [1] 2.632568
 
-    ``` r
+    ``` {.r}
     rt2 <- rThomas(kappa = p$kappa, scale = p$scale, mu = p$mu)
     plot(rt2, main = "")
     ```
@@ -122,7 +131,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     OK, let try that alternative:
 
-    ``` r
+    ``` {.r}
     plot(simulate(fit, drop = TRUE), main = "")
     ```
 
@@ -130,7 +139,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 5.  Try the command
 
-    ``` r
+    ``` {.r}
     fit2 <- kppm(redwood ~ 1, clusters="Thomas", startpar=c(kappa=10, scale=0.1))
     ```
 
@@ -138,7 +147,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     For "large" kappa (parent intensity) and "small" scale (standard deviation), the algorithm seems quite robust:
 
-    ``` r
+    ``` {.r}
     kppm(redwood ~ 1, clusters="Thomas", startpar=c(kappa=10, scale=0.1))
     ```
 
@@ -155,7 +164,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
         ## 23.54757642  0.04704921 
         ## Mean cluster size:  2.632967 points
 
-    ``` r
+    ``` {.r}
     kppm(redwood ~ 1, clusters="Thomas", startpar=c(kappa=100, scale=0.01))
     ```
 
@@ -174,7 +183,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     However, for a very small parent intensity (kappa) and large offspring scale the fit changes considerably.
 
-    ``` r
+    ``` {.r}
     kppm(redwood ~ 1, clusters="Thomas", startpar=c(kappa=0.1, scale=10))
     ```
 
@@ -193,14 +202,14 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 6.  Generate and plot several simulated realisations of the fitted model, to assess whether it is plausible.
 
-    ``` r
+    ``` {.r}
     XX <- simulate(fit, nsim = 11)
     ```
 
         ## Generating 11 simulations... 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,  11.
         ## Done.
 
-    ``` r
+    ``` {.r}
     XX[[12]] <- redwood
     plot(XX, main = "", main.panel = "")
     ```
@@ -211,23 +220,23 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 7.  Extract and plot the fitted pair correlation function by
 
-    ``` r
+    ``` {.r}
     pcffit <- pcfmodel(fit)
     plot(pcffit, xlim = c(0, 0.3))
     ```
 
     OK, let's try that:
 
-    ``` r
+    ``` {.r}
     pcffit <- pcfmodel(fit)
     plot(pcffit, xlim = c(0, 0.3), main = "pair correlation")
     ```
 
     ![](solution09_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-8.  Type `plot(envelope(fit, Lest, nsim=39))` to generate simulation envelopes of the *L* function from this fitted model. Do they suggest the model is plausible?
+8.  Type `plot(envelope(fit, Lest, nsim=39))` to generate simulation envelopes of the \(L\) function from this fitted model. Do they suggest the model is plausible?
 
-    ``` r
+    ``` {.r}
     plot(envelope(fit, Lest, nsim = 39, global = TRUE))
     ```
 
@@ -249,7 +258,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     We fit the Matern cluster process by specifying the `clusters` argument to be `MatClust`.
 
-    ``` r
+    ``` {.r}
     mfit <- kppm(redwood ~ 1, clusters = "MatClust")
     ```
 
@@ -257,7 +266,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
     The variance (covariance matrix) is computed straightforwardly:
 
-    ``` r
+    ``` {.r}
     vcov(mfit)
     ```
 
@@ -266,7 +275,7 @@ The command `rThomas` generates simulated realisations of the Thomas model (‘m
 
 3.  Compare with the covariance matrix obtained when fitting a homogeneous Poisson model.
 
-    ``` r
+    ``` {.r}
     vcov(ppm(redwood ~ 1))
     ```
 

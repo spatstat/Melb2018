@@ -4,23 +4,35 @@ Lab 7: Envelopes and Monte Carlo tests
 This session is concerned with evelopes of summary statistics and Monte Carlo tests.
 The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script07.R) (right click and save).
 
-``` r
+``` {.r}
 library(spatstat)
 ```
+
+    ## Loading required package: spatstat.data
+
+    ## Loading required package: methods
+
+    ## Loading required package: nlme
+
+    ## Loading required package: rpart
+
+    ## 
+    ## spatstat 1.56-1.007       (nickname: 'Damn You Autocorrect') 
+    ## For an introduction to spatstat, type 'beginner'
 
 ### Exercise 1
 
 For the `swedishpines` data:
 
-1.  Plot the *K* function along with pointwise envelopes from 39 simulations of CSR:
+1.  Plot the \(K\) function along with pointwise envelopes from 39 simulations of CSR:
 
-    ``` r
+    ``` {.r}
     plot(envelope(swedishpines, Kest, nsim=39))
     ```
 
     OK,
 
-    ``` r
+    ``` {.r}
     plot(envelope(swedishpines, Kest, nsim=39), main = "")
     ```
 
@@ -32,11 +44,11 @@ For the `swedishpines` data:
 
     ![](solution07_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-2.  Plot the *L* function along with pointwise envelopes from 39 simulations of CSR.
+2.  Plot the \(L\) function along with pointwise envelopes from 39 simulations of CSR.
 
     Like above now with `Lest`:
 
-    ``` r
+    ``` {.r}
     plot(envelope(swedishpines, Lest, nsim=39), main = "")
     ```
 
@@ -48,9 +60,9 @@ For the `swedishpines` data:
 
     ![](solution07_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-3.  Plot the *L* function along with **simultaneous** envelopes from **19** simulations of CSR, using `ginterval=c(0,5)`.
+3.  Plot the \(L\) function along with **simultaneous** envelopes from **19** simulations of CSR, using `ginterval=c(0,5)`.
 
-    ``` r
+    ``` {.r}
     plot(envelope(swedishpines, Lest, nsim = 19, global = TRUE, ginterval=c(0,5)), main = "")
     ```
 
@@ -61,9 +73,9 @@ For the `swedishpines` data:
 
     ![](solution07_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-4.  Plot the *L* function for along with **simultaneous** envelopes from **99** simulations of CSR using `ginterval=c(0,5)`. What is the significance level of the associated test?
+4.  Plot the \(L\) function for along with **simultaneous** envelopes from **99** simulations of CSR using `ginterval=c(0,5)`. What is the significance level of the associated test?
 
-    ``` r
+    ``` {.r}
     plot(envelope(swedishpines, Lest, nsim = 99, global = TRUE, ginterval=c(0,5)), main = "")
     ```
 
@@ -80,25 +92,25 @@ For the `swedishpines` data:
 
 ### Exercise 2
 
-To understand the difficulties with the *K*-function when the point pattern is not spatially homogeneous, try the following experiment (like in the previous lab session).
+To understand the difficulties with the \(K\)-function when the point pattern is not spatially homogeneous, try the following experiment (like in the previous lab session).
 
 1.  Generate a simulated realisation of an inhomogeneous Poisson process, e.g.
 
-    ``` r
+    ``` {.r}
     X <- rpoispp(function(x,y){ 200 * exp(-3 * x) })
     ```
 
     OK,
 
-    ``` r
+    ``` {.r}
     X <- rpoispp(function(x,y){ 200 * exp(-3 * x) })
     ```
 
-2.  Compute simulation envelopes (of your favorite type) of the *K*- or *L*-function under CSR. They may well indicate significant departure from CSR.
+2.  Compute simulation envelopes (of your favorite type) of the \(K\)- or \(L\)-function under CSR. They may well indicate significant departure from CSR.
 
     There indeed often seems to be a departure from CSR:
 
-    ``` r
+    ``` {.r}
     par(mfrow=c(1,2))
     plot(envelope(X, Kest, global = TRUE))
     ```
@@ -110,7 +122,7 @@ To understand the difficulties with the *K*-function when the point pattern is n
         ## 
         ## Done.
 
-    ``` r
+    ``` {.r}
     plot(envelope(X, Lest, global = TRUE))
     ```
 
@@ -123,11 +135,11 @@ To understand the difficulties with the *K*-function when the point pattern is n
 
     ![](solution07_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
-3.  Fit a Poisson point process model to the `japanesepines` data with log-quadratic trend (formula `~polynom(x,y,2)`). Plot the *L*-function of the data along with simultaneous envelopes from 99 simulations **of the fitted model**.
+3.  Fit a Poisson point process model to the `japanesepines` data with log-quadratic trend (formula `~polynom(x,y,2)`). Plot the \(L\)-function of the data along with simultaneous envelopes from 99 simulations **of the fitted model**.
 
     This can be done by the code:
 
-    ``` r
+    ``` {.r}
     fit <- ppm(japanesepines ~ polynom(x, y, 2))
     plot(envelope(fit, Linhom, global = TRUE), main = "")
     ```

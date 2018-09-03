@@ -4,7 +4,7 @@ Lab 3: Intensity dependent on covariate
 This session covers tools for investigating intensity depending on a covariate.
 The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script03.R) (right click and save).
 
-``` r
+``` {.r}
 library(spatstat)
 ```
 
@@ -14,19 +14,19 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 1.  Assign the elevation covariate to a variable `elev` by typing
 
-    ``` r
+    ``` {.r}
     elev <- bei.extra$elev
     ```
 
     OK, lets do that:
 
-    ``` r
+    ``` {.r}
     elev <- bei.extra$elev
     ```
 
 2.  Plot the trees on top of an image of the elevation covariate.
 
-    ``` r
+    ``` {.r}
     plot(elev, main = "")
     plot(bei, add = TRUE, cex = 0.3, pch = 16, cols = "white")
     ```
@@ -35,7 +35,7 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 3.  Cut the study region into 4 areas according to the value of the terrain elevation, and make a texture plot of the result.
 
-    ``` r
+    ``` {.r}
     Z <- cut(elev, 4, labels=c("Low", "Med-Low", "Med-High", "High"))
     textureplot(Z, main = "")
     ```
@@ -44,14 +44,14 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 4.  Convert the image from above to a tesselation, count the number of points in each region using `quadratcount`, and plot the quadrat counts.
 
-    ``` r
+    ``` {.r}
     Y <- tess(image = Z)
     qc <- quadratcount(bei, tess = Y)
     ```
 
 5.  Estimate the intensity in each of the four regions.
 
-    ``` r
+    ``` {.r}
     intensity(qc)
     ```
 
@@ -61,27 +61,27 @@ The `bei` dataset gives the locations of trees in a survey area with additional 
 
 ### Exercise 2
 
-Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where *e*(*u*) is the terrain elevation at location u.
+Assume that the intensity of trees is a function \(\lambda(u) = \rho(e(u))\) where \(e(u)\) is the terrain elevation at location u.
 
-1.  Compute a nonparametric estimate of the function *ρ* and plot it by
+1.  Compute a nonparametric estimate of the function \(\rho\) and plot it by
 
-    ``` r
+    ``` {.r}
     rh <- rhohat(bei, elev)
     plot(rh)
     ```
 
     Repeating the R code:
 
-    ``` r
+    ``` {.r}
     rh <- rhohat(bei, elev)
     plot(rh)
     ```
 
     ![](solution03_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
-2.  Compute the predicted intensity based on this estimate of *ρ*.
+2.  Compute the predicted intensity based on this estimate of \(\rho\).
 
-    ``` r
+    ``` {.r}
     prh <- predict(rh)
     plot(prh, main = "")
     plot(bei, add = TRUE, cols = "white", cex = .2, pch = 16)
@@ -93,7 +93,7 @@ Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where 
 
     The kernel density estimate of the points is computed and plotted with the following code:
 
-    ``` r
+    ``` {.r}
     dbei <- density(bei, sigma = bw.scott)
     plot(dbei, main = "")
     plot(bei, add = TRUE, cols = "white", cex = .2, pch = 16)
@@ -105,13 +105,13 @@ Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where 
 
 4.  Bonus info: To plot the two intensity estimates next to each other you collect the estimates as a spatial object list (`solist`) and plot the result (the estimates are called `pred` and `ker` below):
 
-    ``` r
+    ``` {.r}
     l <- solist(pred, ker)
     plot(l, equal.ribbon = TRUE, main = "", 
          main.panel = c("rhohat prediction", "kernel smoothing"))
     ```
 
-    ``` r
+    ``` {.r}
     l <- solist(prh, dbei)
     plot(l, equal.ribbon = TRUE, main = "",
          main.panel = c("rhohat prediction", "kernel smoothing"))
@@ -125,7 +125,7 @@ Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where 
 
     The tests are done straightforwardly with `berman.test`:
 
-    ``` r
+    ``` {.r}
     Z1 <- berman.test(bei, elev)
     print(Z1)
     ```
@@ -137,13 +137,13 @@ Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where 
         ## Z1 = -0.72924, p-value = 0.4659
         ## alternative hypothesis: two-sided
 
-    ``` r
+    ``` {.r}
     plot(Z1)
     ```
 
     ![](solution03_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
-    ``` r
+    ``` {.r}
     Z2 <- berman.test(bei, elev, which = "Z2")
     print(Z2)
     ```
@@ -153,10 +153,10 @@ Assume that the intensity of trees is a function *λ*(*u*)=*ρ*(*e*(*u*)) where 
         ## 
         ## data:  covariate 'elev' evaluated at points of 'bei' 
         ##   and transformed to uniform distribution under CSR
-        ## Z2 = 2.4515, p-value = 0.01423
+        ## Z2 = 2.4514, p-value = 0.01423
         ## alternative hypothesis: two-sided
 
-    ``` r
+    ``` {.r}
     plot(Z2)
     ```
 
