@@ -2,7 +2,7 @@ Lab 2: Intensity
 ================
 
 This session covers exploratory tools for investigating intensity.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script02.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script02.R) (right click and save).
 
 ### Exercise 1
 

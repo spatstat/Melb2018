@@ -2,7 +2,7 @@ Lab 6: Correlation
 ================
 
 This session is concerned with summary statistics for interpoint correlation (i.e. dependence between points).
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script06.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script06.R) (right click and save).
 
 ### Exercise 1
 
@@ -14,7 +14,7 @@ Before we begin, we plot the data:
 plot(swedishpines, main = "")
 ```
 
-![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 1.  Calculate the estimate of the *K*-function using `Kest`.
 
@@ -32,7 +32,7 @@ plot(swedishpines, main = "")
     plot(K, main = "K-function")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-5-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 3.  Plot the estimate of *K*(*r*)−*π*​*r*<sup>2</sup> against *r*.
 
@@ -43,7 +43,7 @@ plot(swedishpines, main = "")
          legendpos = "bottomright")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-6-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 4.  Calculate the estimate of the *L*-function and plot it against *r*.
 
@@ -54,7 +54,7 @@ plot(swedishpines, main = "")
     plot(L, main = "L-function")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-7-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 5.  Plot the estimate of *L*(*r*)−*r* against *r*.
 
@@ -64,7 +64,7 @@ plot(swedishpines, main = "")
     plot(L, . - r ~ r, main = "L-function")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-8-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 6.  Calculate and plot an estimate of the pair correlation function using `pcf`.
 
@@ -75,7 +75,7 @@ plot(swedishpines, main = "")
     plot(pcorf)
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-9-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 7.  Draw tentative conclusions from these plots about interpoint interaction in the data.
 
@@ -98,7 +98,7 @@ plot(swedishpines, main = "")
     fryplot(swedishpines, width=50)
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-11-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 2.  What can you interpret from these plots?
 
@@ -122,7 +122,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The qu
     plot(KiS)
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-13-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 2.  Fit a parametric trend to the data, and use this to compute the inhomogeneous *K* function:
 
@@ -142,7 +142,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The qu
     plot(KiP)
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-15-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 3.  Plot corresponding estimates of the inhomogeneous *L* function, using either `Linhom` or
 
@@ -163,7 +163,7 @@ The `japanesepines` dataset is believed to exhibit spatial inhomogeneity. The qu
     plot(LiP)
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-17-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 4.  Draw tentative conclusions about interpoint interaction.
 
@@ -186,7 +186,7 @@ To understand the difficulties with the *K*-function when the point pattern is n
     plot(X, main = "")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-19-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 2.  Plot the *K*-function or *L*-function. It will most likely appear to show evidence of clustering.
 
@@ -196,7 +196,7 @@ To understand the difficulties with the *K*-function when the point pattern is n
     plot(Lest(X))
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-20-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 ### Exercise 5
 
@@ -215,7 +215,7 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
     plot(X, main = "")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-21-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
 3.  Plot the *K* or *L*-function for this pattern, and determine whether it is distinguishable from a Poisson process.
 
@@ -228,7 +228,7 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
     plot(Y, main = "")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-22-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
     Next, we compute the *K* and *L* functions and plot these:
 
@@ -240,7 +240,7 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
     tmp <- sapply(lapply(Y[-20], Lest), plot, iso ~ r, add = TRUE, col="lightgrey")
     ```
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-23-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
     Alternatively, one can simply do
 
@@ -267,4 +267,4 @@ The cell process (`rcell`) has the same theoretical *K*-function as the uniform 
         ## 
         ## Done.
 
-    ![](/home/rubak/spatstat/SSAI2017/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-24-1.png)
+    ![](/home/rubak/spatstat/Melb2018/docs/solutions/solution06_files/figure-markdown_github/unnamed-chunk-24-1.png)

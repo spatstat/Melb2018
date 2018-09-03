@@ -2,7 +2,7 @@ Lab 6: Correlation
 ================
 
 This session is concerned with summary statistics for interpoint correlation (i.e. dependence between points).
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script06.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script06.R) (right click and save).
 
 ### Exercise 1
 

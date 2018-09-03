@@ -2,7 +2,7 @@ Lab 5: Marked point patterns
 ================
 
 This session covers modelling of marked point patterns using marked point processes.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script05.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script05.R) (right click and save).
 
 ``` r
 library(spatstat)
@@ -55,7 +55,7 @@ The dataset `spruces` contains the Norwegian Spruces dataset giving the location
 
 ### Exercise 2
 
-The file `anthills.txt` is available in the Data directory on [github](https://github.com/spatstat/SSAI2017) and downloadable by [this direct link](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Data/anthills.txt) (right click and save).
+The file `anthills.txt` is available in the Data directory on [github](https://github.com/spatstat/Melb2018) and downloadable by [this direct link](https://raw.githubusercontent.com/spatstat/Melb2018/master/Data/anthills.txt) (right click and save).
 
 It records the locations of anthills recorded in a 1200x1500 metre study region in northern Australia. Coordinates are given in metres, along with a letter code recording the ecological ‘status’ of each anthill.
 

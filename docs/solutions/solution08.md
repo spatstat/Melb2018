@@ -2,7 +2,7 @@ Lab 8: Spacing and distances
 ================
 
 This session is concerned with summary statistics for spacings and interpoint distances.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script08.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script08.R) (right click and save).
 
 ``` r
 library(spatstat)

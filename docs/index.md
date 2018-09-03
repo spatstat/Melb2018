@@ -21,7 +21,7 @@ The course is based on short lectures and software demonstrations followed by "l
 
 All the lecturer's scripts (cheatsheets) and the source code for the labs are on:
 
-- [https://github.com/spatstat/SSAI2017](https://github.com/spatstat/SSAI2017)
+- [https://github.com/spatstat/Melb2018](https://github.com/spatstat/Melb2018)
 
 Slides:
 

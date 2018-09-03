@@ -2,7 +2,7 @@ Lab 4: Fitting Poisson models
 ================
 
 This session is concerned with Poisson point process models.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script04.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script04.R) (right click and save).
 
 ``` r
 library(spatstat)

@@ -2,7 +2,7 @@ Lab 1: Introduction
 ================
 
 This session is about reading in, displaying and summarising point patterns.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script01.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script01.R) (right click and save).
 
 If you have not already done so, you’ll need to start R and load the `spatstat` package by typing
 
@@ -178,7 +178,7 @@ plot(P, main = "Scintillation events")
 
 ### Exercise 4
 
-The file `anthills.txt` is available in the Data directory on [GitHub](https://github.com/spatstat/SSAI2017) and downloadable by [this direct link](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Data/anthills.txt) (right click and save).
+The file `anthills.txt` is available in the Data directory on [GitHub](https://github.com/spatstat/Melb2018) and downloadable by [this direct link](https://raw.githubusercontent.com/spatstat/Melb2018/master/Data/anthills.txt) (right click and save).
 
 It records the locations of anthills recorded in a 1200x1500 metre study region in northern Australia. Coordinates are given in metres, along with a letter code recording the ecological ‘status’ of each anthill (in this exercise we will ignore this letter code).
 

@@ -2,7 +2,7 @@ Lab 3: Intensity dependent on covariate
 ================
 
 This session covers tools for investigating intensity depending on a covariate.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script03.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script03.R) (right click and save).
 
 ``` r
 library(spatstat)

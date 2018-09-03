@@ -2,7 +2,7 @@ Lab 11: Multitype summary functions and models
 ================
 
 This session is concerned with summary statistics and Gibbs models for multitype point patterns.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script11.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script11.R) (right click and save).
 
 ### Exercise 1
 

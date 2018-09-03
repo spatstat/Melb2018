@@ -2,7 +2,7 @@ Lab 7: Envelopes and Monte Carlo tests
 ================
 
 This session is concerned with evelopes of summary statistics and Monte Carlo tests.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script07.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script07.R) (right click and save).
 
 ### Exercise 1
 

@@ -2,7 +2,7 @@ Lab 9: Cluster and Cox processes
 ================
 
 This session is concerned with summary statistics for interpoint spacing and distances.
-The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/SSAI2017/master/Scripts/script09.R) (right click and save).
+The lecturer's R script is [available here](https://raw.githubusercontent.com/spatstat/Melb2018/master/Scripts/script09.R) (right click and save).
 
 ### Exercise 1
 
